@@ -1,7 +1,5 @@
 # bulldozer-c-example
 
-# bulldozer-c
-
 #### 项目介绍
 主要组件:https://github.com/jiang19210/bulldozer-c
 服务端:https://github.com/jiang19210/bulldozer
