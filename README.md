@@ -1,8 +1,8 @@
 # bulldozer-c-example
 
 #### 项目介绍
-主要组件:https://github.com/jiang19210/bulldozer-c
-服务端:https://github.com/jiang19210/bulldozer
+爬虫客户端:https://github.com/jiang19210/bulldozer-c
+爬虫服务端:https://github.com/jiang19210/bulldozer
 ****
 #### 软件架构
 ![avatar](https://github.com/jiang19210/data/blob/master/bulldozer.png?raw=true)
