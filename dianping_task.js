@@ -12,7 +12,7 @@ const events = require("events");
 const cheerio = require("cheerio");
 
 BulldozerC.prototype.withProxy = function (callback, handlerContext) {
-    handlerContext.request.proxy = {'host': '127.0.0.1', 'port': 8888};
+    handlerContext.request.proxy = {'host': '127.0.0.1', 'port': 8888};//重写BulldozerC.prototype.withProxy方法，设置此次请求代理
     callback(handlerContext);
 };
 
