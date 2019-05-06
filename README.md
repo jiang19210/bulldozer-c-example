@@ -21,11 +21,3 @@
 2. global.TASK_SCHEDULE_ENABLE和global.TASK_SCHEDULE_STOP组成任务调度开关，默认都为true，只有都为true的时候任务才会正常运行
 3. global.http_proxy = {'host': proxy.ipaddr, 'port': proxy.port}设置全局代理
 4. 继承方法BulldozerC.prototype.withProxy，设置此次请求代理
-
-
-******************
-******************
-******************
-如有问题可以联系我：微信：814475047，邮箱：814475047@qq.com
-******************
-******************
