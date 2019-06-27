@@ -56,7 +56,6 @@ Dianping_one.prototype.first = function (prehandlerContext) {
 var dianping = new Dianping_one();
 
 var handlerContext = {
-    'mainProgram': dianping,        //mainProgram 处理请求结果对象，包含各种处理对应请求的函数及函数事件
     "request": {
         "options": {
             "method": "GET",
@@ -72,4 +71,5 @@ var handlerContext = {
         "next": "first"    //处理此次返回结果的函数事件，
     }
 };
+handlerContext.mainProgram = dianping; //mainProgram 处理请求结果，会触发Dianping_task().detailUrl函数
 bc.testDelayStartRequest(handlerContext, 'queueName', 2000, bc.spop);// 执行单个请求解析及存储流程,既：请求->解析->存储，会延迟2s执行

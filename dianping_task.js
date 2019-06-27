@@ -82,7 +82,6 @@ Dianping_task.prototype.first = function (prehandlerContext) {
 var dianping = new Dianping_task();
 
 var handlerContext = {
-    'mainProgram': dianping,        //mainProgram 处理请求结果对象，包含各种处理对应请求的函数及函数事件
     "request": {
         "options": {
             "method": "GET",
@@ -97,6 +96,7 @@ var handlerContext = {
         "next": "detailUrl"    //处理此次返回结果的函数事件，
     }
 };
+handlerContext.mainProgram = dianping;  //mainProgram 处理请求结果，会触发Dianping_task().detailUrl函数
 bc.dbClient.sadds({'name': queue_url, 'data':[handlerContext]});  //入口链接， 将爬取请求模板存储到redis set队列dianping_test_queue中，bc.runTask会定时执行
 
 bc.runTask({'name': queue_url}, dianping, '大众点评测试', 2, bc.spop);  //时间间隔2s一次去redis set队列dianping_test_queue取爬取请求模板进行抓取
