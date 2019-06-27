@@ -12,7 +12,7 @@ BulldozerC.prototype.withProxy = function (callback, handlerContext) {
     callback(handlerContext);
 };
 
-global.http_proxy = {'host': '127.0.0.1', 'port': 8888};  //设置代理，全局变量global.http_proxy可以设置代理
+global.http_proxy = {'host': '127.0.0.1', 'port': 8888};  //设置代理，全局变量global.http_proxy可以设置代理 global.proxymodel='default'
 
 var bc = new BulldozerC();
 function Dianping_one() {

@@ -18,12 +18,12 @@ BulldozerC.prototype.withProxy = function (callback, handlerContext) {
 
 var bc = new BulldozerC();
 
-global.http_proxy = {'host': '127.0.0.1', 'port': 8888};  //设置代理，全局变量global.http_proxy可以设置代理
+global.http_proxy = {'host': '127.0.0.1', 'port': 8888};  //设置代理，全局变量global.http_proxy可以设置代理, global.proxymodel='default'
 
 function Dianping_task() {
     global.serverhost = '127.0.0.1';   //服务端地址  服务端地址也可以在 config/default.json中配置
     global.serverport = '9966';        //服务端接口
-    global.proxymodel = 'default';     //代理模式，default模式会用global.http_proxy设置的代理，其余模式需要用withProxy方法设置代理  ，dynamic 模式需要重写withProxy 获取代理
+    global.proxymodel = 'default';     //代理模式，default 模式会用 global.http_proxy 设置的代理，其余模式需要用withProxy方法设置代理  ，dynamic 模式需要重写withProxy 获取代理
     events.EventEmitter.call(this);
     var prototypes = ['first', 'detailUrl'];//注册的函数事件
     for (var i = 0; i < prototypes.length; i++) {
