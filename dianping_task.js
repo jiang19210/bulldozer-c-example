@@ -18,10 +18,12 @@ BulldozerC.prototype.withProxy = function (callback, handlerContext) {
 
 var bc = new BulldozerC();
 
+global.http_proxy = {'host': '127.0.0.1', 'port': 8888};  //设置代理，全局变量global.http_proxy可以设置代理
+
 function Dianping_task() {
-    global.serverhost = '127.0.0.1';   //服务端地址
+    global.serverhost = '127.0.0.1';   //服务端地址  服务端地址也可以在 config/default.json中配置
     global.serverport = '9966';        //服务端接口
-    global.proxymodel = 'dynamic';
+    global.proxymodel = 'default';     //代理模式，default模式会用global.http_proxy设置的代理，其余模式需要用withProxy方法设置代理  ，dynamic 模式需要重写withProxy 获取代理
     events.EventEmitter.call(this);
     var prototypes = ['first', 'detailUrl'];//注册的函数事件
     for (var i = 0; i < prototypes.length; i++) {
@@ -95,6 +97,6 @@ var handlerContext = {
         "next": "detailUrl"    //处理此次返回结果的函数事件，
     }
 };
-bc.startRequest(handlerContext);// 执行单个请求解析及存储流程,既：请求->解析->存储
+bc.dbClient.sadds({'name': queue_url, 'data':[handlerContext]});  //入口链接， 将爬取请求模板存储到redis set队列dianping_test_queue中，bc.runTask会定时执行
 
-bc.runTask({'name': queue_url}, dianping, '大众点评测试', 2, bc.spop);
+bc.runTask({'name': queue_url}, dianping, '大众点评测试', 2, bc.spop);  //时间间隔2s一次去redis set队列dianping_test_queue取爬取请求模板进行抓取

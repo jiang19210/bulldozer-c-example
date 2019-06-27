@@ -6,14 +6,10 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bulldozer-c": "0.0.0",
+    "bulldozer-c": "0.0.34",
     "cheerio": "1.0.0-rc.2",
-    "consul": "0.34.1",
-    "http-clientp": "1.0.14",
-    "jquery": "3.3.1",
+    "http-clientp": "1.0.25",
     "moment": "2.20.1",
-    "node-uuid": "1.4.8",
-    "pm2": "3.2.2",
-    "pmx": "1.6.7"
+    "node-uuid": "1.4.8"
   }
 }
