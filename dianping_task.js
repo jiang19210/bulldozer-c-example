@@ -5,6 +5,7 @@
  * （2）从redis中读取模板数据并进行抓取详情页面的店铺名称、店铺id并存储在数据库中
  * */
 const queue_url = 'dianping_test_queue';
+//const BulldozerC = require('spider-client');
 const BulldozerC = require('bulldozer-c');
 const httpClient = require('http-clientp');
 const util = require("util");

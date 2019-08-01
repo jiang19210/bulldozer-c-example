@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "spider-client": "2.0.03",
     "bulldozer-c": "0.0.41",
     "cheerio": "1.0.0-rc.2",
     "http-clientp": "1.0.25",
