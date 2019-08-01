@@ -13,7 +13,7 @@ const cheerio = require("cheerio");
 //请求前 设置header 信息
 BulldozerC.prototype.taskPreProcess = function (handlerContext) {
     handlerContext.request.options.headers = {};
-    handlerContext.request.options.headers.Cookie = '_lxsdk_cuid=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _lxsdk=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _hc.v=cadff491-f222-0e57-9ff6-6f6349f10eb4.1536561418; aburl=1; s_ViewType=10; Hm_lvt_e6f449471d3527d58c46e24efb4c343e=1558333474; _lxsdk_s=16c4c698667-72-98-25d%7C%7C101';
+    handlerContext.request.options.headers.Cookie = '_lxsdk_cuid=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _lxsdk=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _hc.v=cadff491-f222-0e57-9ff6-6f6349f10eb4.1536561418; aburl=1; s_ViewType=10; Hm_lvt_e6f449471d3527d58c46e24efb4c343e=1558333474; _lxsdk_s=16c4c698667-72-98-25d%7C%7C101'; //访问官网拿cookie，不然被风控
 };
 //请求前，设置代理信息
 BulldozerC.prototype.withProxy = function (callback, handlerContext) {
@@ -21,7 +21,7 @@ BulldozerC.prototype.withProxy = function (callback, handlerContext) {
     callback(handlerContext);
 };
 
-//数据检查
+//数据检查 检查数据正确性
 BulldozerC.prototype.dataCheck = function (handlerContext) {
     return true;
 };
