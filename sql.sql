@@ -6,5 +6,5 @@ CREATE TABLE `dianping_test_table`
   `CityName`         varchar(88)       DEFAULT NULL COMMENT '城市',
   `ShopName`         varchar(500)      DEFAULT NULL COMMENT '店铺名称',
   PRIMARY KEY (`AutoId`),
-  UNIQUE KEY `uq_Id` (`ShopId`),
+  UNIQUE KEY `uq_Id` (`ShopId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='大众点评测试'
