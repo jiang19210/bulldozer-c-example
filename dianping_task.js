@@ -64,7 +64,7 @@ function Dianping_task() {
 }
 
 util.inherits(Dianping_task, events.EventEmitter);
-///////////////////////////////////////////////
+/////////////////////上面是一些数据校验及通用配置，下面才是真正的解析入库//////////////////////////
 
 Dianping_task.prototype.detailUrl = function (prehandlerContext) {
     let body = prehandlerContext.response.body;//请求返回内容
