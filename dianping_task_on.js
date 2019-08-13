@@ -79,6 +79,7 @@ crawl.on('detailInfo', function (prehandlerContext) {
     //bc.dbClient.save(collection);//保存在mongodb
     let duplicate = ['CityName', 'ShopName'];
     collection.duplicate = duplicate;
+    collection.columns = ['Url', 'CityName', 'ShopName', 'ShopId'];
     bc.dbClient.mysql_save(collection);//保存在mysql(需要先建表),支持ON DUPLICATE KEY UPDATE语法
     //也可以通过 httpClient 将数据保存在自己的数据服务中
 });
