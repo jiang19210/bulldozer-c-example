@@ -37,7 +37,7 @@ bc.setProxy('127.0.0.1', 8888);
 bc.setTaskInitInterval(60 * 24, 0.1); // taskInit执行策略(60*24既每天执行一次，第一次在1分钟后执行)
 
 
-let crawl = bc.newCrawl; //新建一个抓取对象，用 on 写解析代码
+let crawl = bc.newCrawl; //新建一个抓取对象，用 on 监听并解析存储
 
 crawl.on('detailUrl', function (prehandlerContext) {
     let body = prehandlerContext.response.body;//请求返回内容
