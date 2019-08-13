@@ -5,12 +5,10 @@
  * （2）从redis中读取模板数据并进行抓取详情页面的店铺名称、店铺id并存储在数据库中
  * */
 const queue_url = 'dianping_test_queue';
-//const BulldozerC = require('spider-client');
 const BulldozerC = require('bulldozer-c');
 const httpClient = require('http-clientp');
 const util = require("util");
 const events = require("events");
-const cheerio = require("cheerio");
 //请求前 设置header 信息
 BulldozerC.prototype.taskPreProcess = function (handlerContext) {
     handlerContext.request.options.headers = {};
@@ -65,7 +63,7 @@ util.inherits(Dianping_task, events.EventEmitter);
 
 Dianping_task.prototype.detailUrl = function (prehandlerContext) {
     let body = prehandlerContext.response.body;//请求返回内容
-    let $ = cheerio.load(body);
+    let $ = bc.$(body);
     let lis = $('#shop-all-list > ul > li');
 
     let dataUrl = [];
@@ -90,7 +88,7 @@ Dianping_task.prototype.detailInfo = function (prehandlerContext) {
     let data = prehandlerContext.data;//上一个请求带过来的数据
     let shopId = data.url.match(/\d+/)[0];
     let body = prehandlerContext.response.body;//请求返回内容
-    let $ = cheerio.load(body);
+    let $ = bc.$(body);
     let shopName = $('.shop-name').text().trim().split(' ')[0];
     console.log('shopName==' + shopName);
     let result = {
