@@ -9,35 +9,25 @@ const BulldozerC = require('bulldozer-c');
 //请求前 设置header 信息
 BulldozerC.prototype.taskPreProcess = function (handlerContext) {
     handlerContext.request.options.headers = {};
-    handlerContext.request.options.headers.Cookie = '_lxsdk_cuid=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _lxsdk=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _hc.v=cadff491-f222-0e57-9ff6-6f6349f10eb4.1536561418; aburl=1; s_ViewType=10; Hm_lvt_e6f449471d3527d58c46e24efb4c343e=1558333474; _lxsdk_s=16c8ae1ae18-7ab-3f6-19d%7C%7C41'; //访问官网拿cookie，不然被风控
+    handlerContext.request.options.headers.Cookie = '_lxsdk_cuid=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _lxsdk=165c2328d62c8-010e3c20d9b791-34677908-fa000-165c2328d62c8; _hc.v=cadff491-f222-0e57-9ff6-6f6349f10eb4.1536561418; aburl=1; s_ViewType=10; Hm_lvt_e6f449471d3527d58c46e24efb4c343e=1558333474; _lxsdk_s=16c8e0b1977-5f0-e8b-ee8%7C%7C20'; //访问官网拿cookie，不然被风控
 };
 
 //任务初始化
 BulldozerC.prototype.taskInit = function () {
     console.log('初始化操作，将初始请求模板加入到队列中');
-    const handlerContext = {
-        "request": {
-            "options": {
-                "method": "GET",
-                "path": "http://www.dianping.com/hangzhou/ch10/r1665"
-            },
-            "timeout": 1000
-        },
-        "response": {},
-        "data": {//请求带过去的数据都放在data里面
-            "url": "http://www.dianping.com/hangzhou/ch10/r1665",
-            "city": "北京",
-            "next": "detailUrl"    //处理此次返回结果的函数事件，
-        }
-    };
+    const handlerContext = bc.httpUtils.buildHttpcontext('GET', {
+        "url": "http://www.dianping.com/hangzhou/ch10/r1665",
+        "city": "北京",
+        "next": "detailUrl"    //处理此次返回结果的函数事件，
+    });
     bc.dbClient.lpushs({'name': queue_url, 'data': [handlerContext]});
 };
 const bc = new BulldozerC();
 bc.setProxy('127.0.0.1', 8888);
-bc.setTaskInitInterval(60 * 24, 0.1); // taskInit执行策略(60*24既每天执行一次，第一次在1分钟后执行)
+bc.setTaskInitInterval(60 * 24, 100); // taskInit执行策略(60*24既每天执行一次，第一次在1分钟后执行)
 
 
-let crawl = bc.newCrawl(); //新建一个抓取对象，用 on 监听并解析存储
+let crawl = bc.newSingletonCrawl(); //新建一个抓取对象，用 on 监听并解析存储
 
 crawl.on('detailUrl', function (prehandlerContext) {
     let body = prehandlerContext.response.body;//请求返回内容
@@ -84,4 +74,4 @@ crawl.on('detailInfo', function (prehandlerContext) {
     //也可以通过 httpClient 将数据保存在自己的数据服务中
 });
 
-bc.runTask({'name': queue_url}, crawl, '大众点评测试', 3, bc.rpop, 2000);  //时间间隔2s一次去redis set队列dianping_test_queue取爬取请求模板进行抓取
+bc.runTask({'name': queue_url}, crawl, '大众点评测试', 3, bc.rpop, 2000);  //时间间隔3s一次去redis set队列dianping_test_queue取爬取请求模板进行抓取
