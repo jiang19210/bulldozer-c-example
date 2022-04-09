@@ -10,7 +10,7 @@
     "bulldozer-c": "0.0.47",
     "cheerio": "1.0.0-rc.2",
     "http-clientp": "1.0.25",
-    "moment": "2.20.1",
+    "moment": "2.29.2",
     "node-uuid": "1.4.8"
   }
 }
